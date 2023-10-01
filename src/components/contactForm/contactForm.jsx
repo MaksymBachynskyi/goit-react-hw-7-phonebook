@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { nanoid } from 'nanoid';
+import { addContacts, selectorContacts } from 'redux/sliceContacts';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   StyledForm,
   StyledField,
@@ -29,6 +30,8 @@ const MyShema = Yup.object().shape({
     .required(),
 });
 export const ContactForm = ({ onAddNumber }) => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectorContacts);
   return (
     <Formik
       initialValues={{
@@ -37,7 +40,15 @@ export const ContactForm = ({ onAddNumber }) => {
       }}
       validationSchema={MyShema}
       onSubmit={(values, { resetForm }) => {
-        onAddNumber({ id: nanoid(), ...values }, resetForm());
+        const isIcluded = contacts.list.some(
+          item =>
+            item.name.toLocaleLowerCase() === values.name.toLocaleLowerCase()
+        );
+        if (isIcluded) {
+          alert(`${values.name} is alredy in contacts`);
+          return;
+        }
+        return dispatch(addContacts(values)), resetForm();
       }}
     >
       <StyledForm>
