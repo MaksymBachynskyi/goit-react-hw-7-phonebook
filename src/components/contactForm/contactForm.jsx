@@ -48,7 +48,8 @@ export const ContactForm = ({ onAddNumber }) => {
           alert(`${values.name} is alredy in contacts`);
           return;
         }
-        return dispatch(addContacts(values)), resetForm();
+        dispatch(addContacts(values));
+        resetForm();
       }}
     >
       <StyledForm>
