@@ -18,4 +18,3 @@ export const ContactList = ({ contacts, onDelete }) => {
     </div>
   );
 };
-console.log('aaa');
