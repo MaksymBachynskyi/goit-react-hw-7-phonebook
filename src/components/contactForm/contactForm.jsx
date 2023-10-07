@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 import { Formik } from 'formik';
-import { addContacts, selectorContacts } from 'redux/sliceContacts';
+import { addContacts } from 'redux/operation';
+import { selectorContacts } from 'redux/selectors';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   StyledForm,

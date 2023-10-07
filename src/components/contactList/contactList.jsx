@@ -1,22 +1,15 @@
 import { StyledBtn, Wrapper } from './contactList.styled';
-import { deleteContacts, selectorContacts } from 'redux/sliceContacts';
-import { useDispatch } from 'react-redux';
-import { selectorFilter } from 'redux/sliceFilter';
-import { useSelector } from 'react-redux';
+import { deleteContacts } from 'redux/operation';
+import { useDispatch, useSelector } from 'react-redux';
+
+import { selectorFiltred } from 'redux/selectors';
 export const ContactList = () => {
-  const contacts = useSelector(selectorContacts);
-  const filter = useSelector(selectorFilter);
+  const contacts = useSelector(selectorFiltred);
+
   const dispatch = useDispatch();
-  const getFiltredarray = () => {
-    return contacts.list.filter(item => {
-      const normalize = item.name.toLowerCase();
-      const normalizeTarget = filter.toLowerCase();
-      return normalize.includes(normalizeTarget);
-    });
-  };
   return (
     <div>
-      {getFiltredarray().map(item => {
+      {contacts.map(item => {
         return (
           <Wrapper key={item.id}>
             {item.name}: {item.number}
