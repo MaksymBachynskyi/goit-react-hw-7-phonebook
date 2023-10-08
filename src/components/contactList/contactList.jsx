@@ -2,7 +2,11 @@ import { StyledBtn, Wrapper } from './contactList.styled';
 import { deleteContacts } from 'redux/operation';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectorFiltred } from 'redux/selectors';
+import {
+  selectorContacts,
+  selectorFilter,
+  selectorFiltred,
+} from 'redux/selectors';
 export const ContactList = () => {
   const contacts = useSelector(selectorFiltred);
 

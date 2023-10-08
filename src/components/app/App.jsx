@@ -6,9 +6,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectorContacts } from 'redux/selectors.js';
 import { useEffect } from 'react';
 import { fetchContacts } from 'redux/operation.js';
+
 export function App() {
   const contacts = useSelector(selectorContacts);
-  const { isLoading, error, list } = contacts;
+  const { list, isLoading, error } = contacts;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchContacts());
@@ -22,7 +23,7 @@ export function App() {
       <h2>Contacts</h2>
       <Filter />
       {isLoading && <p>Loading tasks...</p>}
-      {error && <p>{error}</p>}
+      {error && <p>{contacts.error}</p>}
       {list.length > 0 && <ContactList />}
     </Container>
   );
