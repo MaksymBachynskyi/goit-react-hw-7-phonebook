@@ -41,7 +41,7 @@ export const ContactForm = ({ onAddNumber }) => {
       }}
       validationSchema={MyShema}
       onSubmit={(values, { resetForm }) => {
-        const isIcluded = contacts.list.some(
+        const isIcluded = contacts.some(
           item =>
             item.name.toLocaleLowerCase() === values.name.toLocaleLowerCase()
         );

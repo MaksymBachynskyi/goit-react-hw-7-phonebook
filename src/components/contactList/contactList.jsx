@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { selectorFiltred } from 'redux/selectors';
 export const ContactList = () => {
-  const contacts = useSelector(selectorFiltred);
+  const contactsList = useSelector(selectorFiltred);
 
   const dispatch = useDispatch();
   return (
     <div>
-      {contacts.map(item => {
+      {contactsList.map(item => {
         return (
           <Wrapper key={item.id}>
             {item.name}: {item.number}
